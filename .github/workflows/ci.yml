@@ -35,6 +35,9 @@ jobs:
       - name: Set up mise
         uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Lint
         run: mise run lint
 
@@ -46,6 +49,9 @@ jobs:
 
       - name: Set up mise
         uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Test
         run: mise run test
@@ -62,5 +68,8 @@ jobs:
       - name: Set up mise
         uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
 
-      - name: Build and vet
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check the package
         run: mise run build
