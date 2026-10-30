@@ -1,0 +1,34 @@
+[tools]
+go = "1.27.3"
+golangci-lint = "2.15.0"
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
+
+[tasks.lint]
+alias = "l"
+description = "Lint Go code and GitHub Actions workflows"
+run = [
+  "golangci-lint run",
+  "actionlint",
+]
+
+[tasks.test]
+alias = "t"
+description = "Run tests with the race detector"
+run = "go test -race -count=1 ./..."
+
+[tasks.build]
+alias = "b"
+description = "Build and vet"
+run = [
+  "go build ./...",
+  "go vet ./...",
+]
+
+[tasks.gen]
+description = "Regenerate dist/ from tokens.json and the designs in internal/art"
+run = "go run ./gen"
+
+[tasks.check-generated]
+description = "Fail if dist/'s SVG and CSS files don't match their sources"
+file = "scripts/check-generated.sh"

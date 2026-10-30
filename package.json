@@ -1,0 +1,22 @@
+{
+  "name": "@roguekeyboards/mykeebs-brand",
+  "version": "1.70.3",
+  "description": "mykeebs logo, icons and design tokens",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roguekeyboards/mykeebs-brand.git"
+  },
+  "files": [
+    "dist",
+    "tokens.json",
+    "LICENSE"
+  ],
+  "exports": {
+    "./tokens.json": "./tokens.json",
+    "./*": "./dist/*"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
