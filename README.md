@@ -2,7 +2,7 @@
 
 mykeebs' logo, icons and design tokens. They have their own repo because the brand belongs to the whole system, not one client: [kbdb](https://github.com/roguekeyboards/kbdb)'s sign-in page, [mykeebs-web](https://github.com/roguekeyboards/mykeebs-web) and [mykeebs.com](https://github.com/roguekeyboards/mykeebs.com) all use it.
 
-- **Source of truth:** `tokens.json` (colours and font stacks) and the designs in `src/logo.js`.
+- **Source of truth:** `tokens.json` (colours and font stacks), the designs in `src/logo.js` and the fonts in `fonts/`.
 - **Generated:** everything in `dist/`, by `mise run gen`. Never edit `dist/` by hand.
 - **npm:** `@roguekeyboards/mykeebs-brand` on GitHub Packages, published when a release is. Renovate bumps it in each consumer.
 
@@ -18,6 +18,8 @@ mykeebs' logo, icons and design tokens. They have their own repo because the bra
 | `icon-192.png`, `icon-512.png`                                              | Web app manifest                                                                                             |
 | `discord-avatar.png` (1024)                                                 | Prod Discord application icon. Discord crops it to a circle; the mark fits inside.                           |
 | `discord-avatar-dev.png` (1024)                                             | Dev Discord application icon: the same with a blue "DEV" banner                                              |
+| `fonts.css`                                                                 | `@font-face` rules for JetBrains Mono (400-700) and Inter (400-600), latin subset                            |
+| `fonts/*.woff2`, `fonts/*-OFL.txt`                                          | The fonts `fonts.css` loads and their licenses. Keep the licenses with the fonts wherever they're served.    |
 | `tokens.css`                                                                | `tokens.json` as CSS custom properties: theme tokens as `--accent` etc., logo colours as `--logo-amber` etc. |
 
 In the SVGs the wordmark's text is converted to outlines, so they render the same without JetBrains Mono installed.
@@ -29,6 +31,7 @@ import favicon from '@roguekeyboards/mykeebs-brand/favicon.svg';
 ```
 
 ```css
+@import '@roguekeyboards/mykeebs-brand/fonts.css';
 @import '@roguekeyboards/mykeebs-brand/tokens.css';
 ```
 
@@ -72,4 +75,4 @@ These don't update themselves:
 
 ## License
 
-The generator's code is [MIT](LICENSE-MIT). The name, logo and artwork aren't; see [`LICENSE`](LICENSE). JetBrains Mono is under the SIL Open Font License, in [`fonts/OFL.txt`](fonts/OFL.txt).
+The generator's code is [MIT](LICENSE-MIT). The name, logo and artwork aren't; see [`LICENSE`](LICENSE). The fonts are under the SIL Open Font License, with each license beside its font in [`fonts/`](fonts/).

@@ -9,5 +9,7 @@ with anything it isn't.
 
 The code that generates them is covered by the MIT license, in LICENSE-MIT.
 
-fonts/JetBrainsMono-ExtraBold.ttf is JetBrains Mono, licensed under the SIL
-Open Font License 1.1 - see fonts/OFL.txt.
+The fonts are not covered by either of the above. JetBrains Mono and Inter are
+licensed under the SIL Open Font License 1.1. See fonts/OFL.txt for
+fonts/JetBrainsMono-ExtraBold.ttf, and the -OFL.txt file beside the fonts for
+those in fonts/web/ and dist/fonts/.

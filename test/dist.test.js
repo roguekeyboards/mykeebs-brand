@@ -3,9 +3,9 @@
 // and CSS files byte for byte.
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { before, describe, it } from 'node:test';
-import { DIST_DIR, FONT_FILE, TOKENS_FILE, build } from '../src/assets.js';
+import { DIST_DIR, TOKENS_FILE, build, readSources } from '../src/assets.js';
 import { parseTokens, lookup } from '../src/tokens.js';
 import { decodePNG, icoImages } from './png-decode.js';
 
@@ -16,15 +16,15 @@ describe('dist', () => {
 	let committed;
 
 	before(() => {
-		built = build(
-			readFileSync(join(root, TOKENS_FILE), 'utf8'),
-			readFileSync(join(root, FONT_FILE))
-		);
+		built = build(readSources(root));
+		const dist = join(root, DIST_DIR);
 		committed = new Map(
-			readdirSync(join(root, DIST_DIR)).map((name) => [
-				name,
-				readFileSync(join(root, DIST_DIR, name))
-			])
+			readdirSync(dist, { recursive: true, withFileTypes: true })
+				.filter((e) => e.isFile())
+				.map((e) => {
+					const path = join(e.parentPath, e.name);
+					return [relative(dist, path), readFileSync(path)];
+				})
 		);
 	});
 
@@ -56,6 +56,29 @@ describe('dist', () => {
 			'tokens.css'
 		]) {
 			assert.ok(built.has(name), name);
+		}
+	});
+
+	it('declares only web fonts it ships', () => {
+		const css = built.get('fonts.css').toString();
+		const urls = [...css.matchAll(/url\('\.\/(.+?)'\)/g)].map((m) => m[1]);
+		assert.equal(urls.length, 7);
+		for (const url of urls) {
+			assert.ok(built.has(url), url);
+		}
+	});
+
+	it('ships each font family with its licence', () => {
+		for (const file of ['inter', 'jetbrains-mono']) {
+			assert.match(built.get(`fonts/${file}-OFL.txt`).toString(), /SIL Open Font License/);
+		}
+	});
+
+	it('holds web fonts that match their sources', () => {
+		for (const [name, want] of built) {
+			if (name.startsWith('fonts/')) {
+				assert.ok(want.equals(committed.get(name)), name);
+			}
 		}
 	});
 
