@@ -24,17 +24,6 @@ mykeebs' logo, icons and design tokens. They have their own repo because the bra
 
 In the SVGs the wordmark's text is converted to outlines, so they render the same without JetBrains Mono installed.
 
-### Using it in mykeebs-web
-
-```ts
-import favicon from '@roguekeyboards/mykeebs-brand/favicon.svg';
-```
-
-```css
-@import '@roguekeyboards/mykeebs-brand/fonts.css';
-@import '@roguekeyboards/mykeebs-brand/tokens.css';
-```
-
 ## Local setup
 
 Tooling is pinned with [mise](https://mise.jdx.dev). The generator's one dependency, `opentype.js`, reads the font; it draws and encodes the images itself, so there's nothing native to install.
@@ -54,6 +43,7 @@ import favicon from '@roguekeyboards/mykeebs-brand/favicon.svg';
 ```
 
 ```css
+@import '@roguekeyboards/mykeebs-brand/fonts.css';
 @import '@roguekeyboards/mykeebs-brand/tokens.css';
 ```
 
