@@ -1,33 +1,29 @@
 [tools]
-go = "1.27.3"
-golangci-lint = "2.15.0"
+node = "24.22.2"
 actionlint = "1.7.12"
 shellcheck = "0.11.0"
 
 [tasks.lint]
 alias = "l"
-description = "Lint Go code and GitHub Actions workflows"
+description = "Lint the code and GitHub Actions workflows"
 run = [
-  "golangci-lint run",
+  "npm run lint",
   "actionlint",
 ]
 
 [tasks.test]
 alias = "t"
-description = "Run tests with the race detector"
-run = "go test -race -count=1 ./..."
+description = "Run the tests"
+run = "npm test"
 
 [tasks.build]
 alias = "b"
-description = "Build and vet"
-run = [
-  "go build ./...",
-  "go vet ./...",
-]
+description = "Check the package would publish"
+run = "npm pack --dry-run"
 
 [tasks.gen]
-description = "Regenerate dist/ from tokens.json and the designs in internal/art"
-run = "go run ./gen"
+description = "Regenerate dist/ from tokens.json and the designs in src/logo.js"
+run = "npm run gen"
 
 [tasks.check-generated]
 description = "Fail if dist/'s SVG and CSS files don't match their sources"

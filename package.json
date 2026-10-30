@@ -1,22 +1,37 @@
 {
-  "name": "@roguekeyboards/mykeebs-brand",
-  "version": "1.70.3",
-  "description": "mykeebs logo, icons and design tokens",
-  "license": "SEE LICENSE IN LICENSE",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/roguekeyboards/mykeebs-brand.git"
-  },
-  "files": [
-    "dist",
-    "tokens.json",
-    "LICENSE"
-  ],
-  "exports": {
-    "./tokens.json": "./tokens.json",
-    "./*": "./dist/*"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+	"name": "@roguekeyboards/mykeebs-brand",
+	"version": "1.70.3",
+	"description": "mykeebs logo, icons and design tokens",
+	"license": "SEE LICENSE IN LICENSE",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/roguekeyboards/mykeebs-brand.git"
+	},
+	"files": [
+		"dist",
+		"tokens.json",
+		"LICENSE"
+	],
+	"exports": {
+		"./tokens.json": "./tokens.json",
+		"./*": "./dist/*"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"type": "module",
+	"scripts": {
+		"gen": "node src/gen.js",
+		"test": "node --test",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.14.0",
+		"eslint-config-prettier": "^10.1.8",
+		"globals": "^17.13.0",
+		"opentype.js": "^2.0.0",
+		"prettier": "^3.9.10"
+	}
 }

@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-go run ./gen
+npm run --silent gen
 
-# dist/'s images aren't compared here: rasterizing can differ by a shade on a
-# pixel or two between CPU architectures, so a Mac-generated PNG never matches
-# a CI-generated one byte for byte. internal/assets' tests compare them pixel
-# by pixel within a tolerance instead. Its text files (SVG, CSS) are
-# deterministic.
+# dist/'s images aren't compared here: their bytes can vary with the zlib doing the
+# compressing. The tests compare them pixel by pixel instead.
 if ! git diff --exit-code --stat -- 'dist/*.svg' 'dist/*.css'; then
   echo
   echo "dist/ is out of date - run mise run gen and commit the result." >&2
