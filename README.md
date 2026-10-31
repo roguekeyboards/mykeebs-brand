@@ -1,6 +1,6 @@
 # mykeebs-brand
 
-mykeebs' logo, icons and design tokens. They have their own repo because the brand belongs to the whole system, not one client: [kbdb](https://github.com/roguekeyboards/kbdb)'s sign-in page, [mykeebs-web](https://github.com/roguekeyboards/mykeebs-web) and [mykeebs.com](https://github.com/roguekeyboards/mykeebs.com) all use it.
+mykeebs' logo, icons and design tokens. They have their own repo because the brand belongs to the whole system, not one client: [mykeebs-api](https://github.com/roguekeyboards/mykeebs-api)'s sign-in page, [mykeebs-web](https://github.com/roguekeyboards/mykeebs-web) and [mykeebs.com](https://github.com/roguekeyboards/mykeebs.com) all use it.
 
 - **Source of truth:** `tokens.json` (colours and font stacks), the designs in `src/logo.js` and the fonts in `fonts/`.
 - **Generated:** everything in `dist/`, by `mise run gen`. Never edit `dist/` by hand.
